@@ -18,7 +18,7 @@ export async function signup({
   password: string;
   name?: string;
 }): Promise<AuthRes> {
-  return post(`${apiURL()}/signup`, { email, password, name }).then(async res => {
+  return post(`${apiURL()}/signup`, { email, password, name }).then(async (res) => {
     setToken(res.token);
     setUser(res.user);
     return res;
@@ -26,7 +26,7 @@ export async function signup({
 }
 
 export async function signin({ email, password }: { email: string; password: string }): Promise<AuthRes> {
-  return post(`${apiURL()}/signin`, { email, password }).then(async res => {
+  return post(`${apiURL()}/signin`, { email, password }).then(async (res) => {
     setToken(res.token);
     setUser(res.user);
     return res;
@@ -70,8 +70,21 @@ export function resetPasswordRequest({ email }: { email: string }) {
   return post(url, { email });
 }
 
-export async function resetPassword({ token: t, password }: { token: string; password: string }) {
-  return post(`${apiURL()}/reset`, { token: t, password }).then(async res => {
+export async function resetPassword({ token, password }: { token: string; password: string }) {
+  return post(`${apiURL()}/reset`, { token, password }).then(async (res) => {
+    setToken(res.token);
+    setUser(res.user);
+    return res;
+  });
+}
+
+export function magicLinkRequest({ email }: { email: string }) {
+  const url = `${apiURL()}/magiclink_request`;
+  return post(url, { email });
+}
+
+export async function magicLinkSignin({ token }: { token: string }) {
+  return post(`${apiURL()}/magiclink_signin`, { token }).then(async (res) => {
     setToken(res.token);
     setUser(res.user);
     return res;

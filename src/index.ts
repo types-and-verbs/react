@@ -1,6 +1,15 @@
 import { User, Ref, Model, ModelTeam, ModelUser, ModelPublic } from './types';
 import { getProject, setProject, setUser, setToken } from './state';
-import { signin, signup, signout, resetPasswordRequest, resetPassword, updateUser } from './auth';
+import {
+  signin,
+  signup,
+  signout,
+  resetPasswordRequest,
+  resetPassword,
+  updateUser,
+  magicLinkRequest,
+  magicLinkSignin,
+} from './auth';
 import { TypesAndVerbsProvider, useUser, useFindOne, useFindMany, useCreate, useUpdate, useRemove } from './hooks/';
 import { findMany, findOne, create, update, remove } from './documents';
 
@@ -44,4 +53,6 @@ export {
   resetPassword,
   useUser,
   updateUser,
+  magicLinkRequest,
+  magicLinkSignin,
 };

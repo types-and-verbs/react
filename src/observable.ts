@@ -8,11 +8,11 @@ export class Observable {
   }
 
   public remove(observerToRemove: any) {
-    this.observers = this.observers.filter(observer => observerToRemove !== observer);
+    this.observers = this.observers.filter((observer) => observerToRemove !== observer);
   }
 
   public notify(u: User | null) {
-    this.observers.forEach(observer => observer(u));
+    this.observers.forEach((observer) => observer(u));
   }
 }
 
