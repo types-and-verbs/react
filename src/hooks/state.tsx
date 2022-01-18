@@ -38,6 +38,8 @@ export const TypesAndVerbsProvider: React.FC<ProviderProps> = ({ children, proje
     // only get if there is a token
     if (getToken()) {
       fetchUser();
+    } else {
+      setState({ ...state, loading: false });
     }
   }, []);
 

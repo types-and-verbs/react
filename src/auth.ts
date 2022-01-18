@@ -42,8 +42,12 @@ export async function fetchUser() {
     const user = await request({ url, method: 'GET' });
     setUser(user);
     return user;
-  } catch (err) {
+  } catch (err: any) {
     console.error(err);
+    if (err?.message === 'Not authorized') {
+      setUser(null);
+      setToken(null);
+    }
   }
 }
 
